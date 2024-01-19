@@ -1,0 +1,21 @@
+body {
+    background-color: whitesmoke;
+}
+
+.container {
+    margin-top: 5px;
+}
+
+label {
+    font-weight: bold;
+}
+
+.row {
+    /* border: 5px solid red; */
+    display: flex;
+    align-items: center;
+}
+
+.table{
+    margin-top: 4rem;
+}
