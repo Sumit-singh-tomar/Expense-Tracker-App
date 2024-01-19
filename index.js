@@ -11,31 +11,50 @@ function addExpense(event) {
 
 
     if (j == 0) {
-        var div = document.getElementById('show-table')
-        div.innerHTML = `
-    <table class="table">
-        <tr>
-            <th>Expense Name</th>
-            <th>Expense Amount</th>
-            <th>Date</th>
-            <th>Action</th>
-        </tr>
-    </table>`
-    j++
+        let div = document.getElementById('show-table')
+        let newTable = document.createElement('table')
+        newTable.className = "table"
+        
+        let row = newTable.insertRow()
+        row.style.fontWeight="bold"
+        row.insertCell(0).innerHTML = "Expense Name"
+        row.insertCell(1).innerHTML = "Expense Amount"
+        row.insertCell(2).innerHTML = "Date"
+        row.insertCell(3).innerHTML = "Action"
+
+        div.appendChild(newTable)
+        j++
     }
 
 
-    var table = document.getElementsByClassName('table')[0];
+    let table = document.getElementsByClassName('table')[0];
+    let newRow = table.insertRow();
 
-    var newRow = table.insertRow();
+    let editButton=document.createElement('button')
+    editButton.innerHTML="EDIT"
+    editButton.className='btn btn-primary'
+    editButton.onclick=function(){
+        console.log('hidsssssssss')
+    }
 
-    var cell1 = newRow.insertCell(0);
-    var cell2 = newRow.insertCell(1);
-    var cell3 = newRow.insertCell(2);
-    var cell4 = newRow.insertCell(3);
+    let deleteButton=document.createElement('button')
+    deleteButton.innerText="DELETE"
+    deleteButton.style.marginLeft='5px'
+    deleteButton.className='btn btn-danger'
+    deleteButton.onclick=function(e){
+        const rowToDelete=e.target.parentElement.parentElement
+        rowToDelete.remove()
+        
+        localStorage.removeItem(expenseDetail.expenseName)
+    }
+    
+    newRow.insertCell(0).innerHTML=expenseDetail.expenseName;
+    newRow.insertCell(1).innerHTML = expenseDetail.expenseAmt;
+    newRow.insertCell(2).innerHTML = expenseDetail.date;
+    newRow.insertCell(3).append(editButton,deleteButton);
 
-    cell1.innerHTML = expenseDetail.expenseName;
-    cell2.innerHTML = expenseDetail.expenseAmt;
-    cell3.innerHTML = expenseDetail.date;
-    cell4.innerHTML = `<button>Edit</button> <button>Delete</button>`;
+
+    event.target.expenseAmt.value=''
+    event.target.expenseName.value=''
+    event.target.date.value=''
 }
