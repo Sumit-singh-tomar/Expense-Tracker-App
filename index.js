@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     let newRow = table.insertRow();
 
                     let editButton = document.createElement('button')
-                    editButton.innerHTML = `<a href="/edit.html?$uid=${item.id}&name=${item.expensename}&amount=${item.amount}&date=${item.date}">Edit</a>`
+                    editButton.innerHTML = `<a href="/edit.html?name=${item.expensename}&amount=${item.amount}&date=${item.date}&uid=${item.id}">Edit</a>`
                     editButton.className = 'btn btn-primary'
                     editButton.onclick = function (e) {
                         // const rowToEdit = e.target.parentElement.parentElement

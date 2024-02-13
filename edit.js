@@ -1,8 +1,8 @@
 const urlParams = new URLSearchParams(window.location.search);
+const uid = urlParams.get('uid');
 const expensename = urlParams.get('name');
 const amount = urlParams.get('amount');
 const date = urlParams.get('date');
-const uid = urlParams.get('uid');
 
 console.log('dddd',uid,amount)
 
@@ -23,6 +23,7 @@ function editExpense(event) {
 
     axios.put(`http://localhost:4000/data/edit-expense`, expenseDetail)
         .then((result) => {
+            window.location.href = 'index.html';
             console.log(result);
         })
         .catch((e) => { console.log(e) })
